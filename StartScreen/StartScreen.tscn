@@ -16,33 +16,55 @@ start_button = NodePath("MenuContainer/StartButton")
 settings_button = NodePath("MenuContainer/SettingButton")
 quit_button = NodePath("MenuContainer/QuitButton")
 
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 49.0
-offset_top = 28.0
-offset_right = 1123.0
-offset_bottom = 609.0
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 1, 1)
 
 [node name="Title" type="Label" parent="."]
-layout_mode = 0
-offset_left = 526.0
-offset_top = 86.0
-offset_right = 617.0
-offset_bottom = 141.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 485.0
+offset_top = 153.0
+offset_right = 667.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8799159, 0.56726277, 0.6549567, 1)
+theme_override_font_sizes/font_size = 50
 text = "贪吃蛇大战"
+horizontal_alignment = 1
 
 [node name="MenuContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 390.0
-offset_top = 204.0
-offset_right = 759.0
-offset_bottom = 479.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 485.0
+offset_top = 424.0
+offset_right = 667.0
+offset_bottom = 621.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
 
 [node name="StartButton" type="Button" parent="MenuContainer"]
 layout_mode = 2
+text = "开始游戏"
 
 [node name="SettingButton" type="Button" parent="MenuContainer"]
 layout_mode = 2
+text = "设置"
 
 [node name="QuitButton" type="Button" parent="MenuContainer"]
 layout_mode = 2
+text = "退出"

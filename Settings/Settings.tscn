@@ -1,3 +1,69 @@
-[gd_scene format=3 uid="uid://cudo33tr8xcyg"]
+[gd_scene load_steps=3 format=3 uid="uid://cudo33tr8xcyg"]
 
-[node name="Settings" type="Node"]
+[ext_resource type="Script" uid="uid://b77l6wtbf4thp" path="res://Settings/settings.gd" id="1_w44vd"]
+[ext_resource type="Texture2D" uid="uid://brlssqwovojgd" path="res://Settings/back.svg" id="2_246cf"]
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("music_on_button", "music_off_button", "back_button", "music_icon")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_w44vd")
+music_on_button = NodePath("HBoxContainer/MusicOn")
+music_off_button = NodePath("HBoxContainer/MusicOff")
+back_button = NodePath("BackButton")
+music_icon = NodePath("MusicIcon")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8470393, 0.7234356, 0.68607664, 1)
+
+[node name="MusicLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 197.0
+offset_right = 317.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(1, 1, 0.1254902, 1)
+theme_override_font_sizes/font_size = 60
+text = "音乐"
+
+[node name="MusicIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 336.0
+offset_right = 277.0
+offset_bottom = 376.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 331.0
+offset_right = 895.0
+offset_bottom = 441.0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="MusicOff" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "禁用"
+
+[node name="MusicOn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "启动"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 28.0
+offset_right = 143.0
+offset_bottom = 136.0
+icon = ExtResource("2_246cf")
+flat = true
