@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqt1hm1g1ueh4"]
+[gd_scene load_steps=8 format=3 uid="uid://cqt1hm1g1ueh4"]
 
 [ext_resource type="Script" uid="uid://j5qorhtv8mn0" path="res://StartScreen/start_screen.gd" id="1_vdfby"]
+[ext_resource type="Texture2D" uid="uid://ce2yhyb4kef28" path="res://StartScreen/snakes/iso-snake-blue.png" id="2_cqtsi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqtsi"]
+atlas = ExtResource("2_cqtsi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x1nq"]
+atlas = ExtResource("2_cqtsi")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41jxu"]
+atlas = ExtResource("2_cqtsi")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h17d6"]
+atlas = ExtResource("2_cqtsi")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0a8ne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqtsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x1nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41jxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h17d6")
+}],
+"loop": true,
+"name": &"snakes",
+"speed": 5.0
+}]
 
 [node name="StartScreen" type="Control" node_paths=PackedStringArray("start_button", "settings_button", "quit_button")]
 layout_mode = 3
@@ -25,7 +62,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 1, 1, 1)
+color = Color(0.9019608, 0.9019608, 0.27450982, 1)
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -33,12 +70,12 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 485.0
-offset_top = 153.0
+offset_top = 114.0
 offset_right = 667.0
-offset_bottom = 153.0
+offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.8799159, 0.56726277, 0.6549567, 1)
+theme_override_colors/font_color = Color(1, 0.11764706, 0.11764706, 1)
 theme_override_font_sizes/font_size = 50
 text = "贪吃蛇大战"
 horizontal_alignment = 1
@@ -48,10 +85,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 485.0
-offset_top = 424.0
-offset_right = 667.0
-offset_bottom = 621.0
+offset_left = 69.0
+offset_top = 426.0
+offset_right = 251.0
+offset_bottom = 623.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
@@ -68,3 +105,11 @@ text = "设置"
 [node name="QuitButton" type="Button" parent="MenuContainer"]
 layout_mode = 2
 text = "退出"
+
+[node name="SnakesAnimated" type="AnimatedSprite2D" parent="."]
+position = Vector2(849.00006, 469)
+scale = Vector2(11.296876, 11.734376)
+sprite_frames = SubResource("SpriteFrames_0a8ne")
+animation = &"snakes"
+autoplay = "snakes"
+frame_progress = 0.6729457
