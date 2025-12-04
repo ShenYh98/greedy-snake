@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqt1hm1g1ueh4"]
+[gd_scene load_steps=9 format=3 uid="uid://cqt1hm1g1ueh4"]
 
 [ext_resource type="Script" uid="uid://j5qorhtv8mn0" path="res://StartScreen/start_screen.gd" id="1_vdfby"]
 [ext_resource type="Texture2D" uid="uid://ce2yhyb4kef28" path="res://StartScreen/snakes/iso-snake-blue.png" id="2_cqtsi"]
+[ext_resource type="Script" uid="uid://yu8nckokdexd" path="res://StartScreen/snakes_animated.gd" id="3_4x1nq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqtsi"]
 atlas = ExtResource("2_cqtsi")
@@ -107,9 +108,10 @@ layout_mode = 2
 text = "退出"
 
 [node name="SnakesAnimated" type="AnimatedSprite2D" parent="."]
-position = Vector2(849.00006, 469)
-scale = Vector2(11.296876, 11.734376)
+position = Vector2(720, 520)
+scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_0a8ne")
 animation = &"snakes"
 autoplay = "snakes"
 frame_progress = 0.6729457
+script = ExtResource("3_4x1nq")

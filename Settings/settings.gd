@@ -14,7 +14,7 @@ const MUSIC_BUS_NAME = "Master"
 @onready var volume_on_icon = preload("res://Settings/musicOn.svg")
 @onready var volume_off_icon = preload("res://Settings/musicOff.svg")
 
-func _ready():
+func _ready() -> void:
 	# 连接按钮信号
 	if music_on_button:
 		music_on_button.pressed.connect(_on_music_on_button_pressed)
@@ -31,23 +31,23 @@ func _ready():
 	_update_ui_state()
 
 # 4. 点击"打开音乐"按钮
-func _on_music_on_button_pressed():
+func _on_music_on_button_pressed() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(MUSIC_BUS_NAME), 0.0)
 	_save_settings(true)
 	_update_ui_state()
 
 # 5. 点击"关闭音乐"按钮
-func _on_music_off_button_pressed():
+func _on_music_off_button_pressed() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(MUSIC_BUS_NAME), -80.0)
 	_save_settings(false)
 	_update_ui_state()
 
 # 6. 点击"返回"按钮
-func _on_back_button_pressed():
+func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://StartScreen/StartScreen.tscn")
 
 # 7. 更新UI状态（按钮和图标）
-func _update_ui_state():
+func _update_ui_state() -> void:
 	# 获取当前音量状态
 	var current_volume = AudioServer.get_bus_volume_db(AudioServer.get_bus_index(MUSIC_BUS_NAME))
 	var is_music_on = current_volume > -40.0
@@ -66,13 +66,13 @@ func _update_ui_state():
 			music_icon.texture = volume_off_icon
 
 # 8. 保存设置
-func _save_settings(music_enabled: bool):
+func _save_settings(music_enabled: bool) -> void:
 	var config = ConfigFile.new()
 	config.set_value("audio", "music_enabled", music_enabled)
 	config.save(CONFIG_PATH)
 
 # 9. 加载设置
-func _load_settings():
+func _load_settings() -> void:
 	var config = ConfigFile.new()
 	var err = config.load(CONFIG_PATH)
 	
