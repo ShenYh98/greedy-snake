@@ -3,15 +3,17 @@ extends Node2D
 @onready var snakeCtrl = $SnakeCtrl
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	snakeCtrl.position = Vector2(640, 300) # x: 1215 65 / y: 60 665
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	#if snakeCtrl.position.x < 65 && snakeCtrl.position.x > 1215 :
-		#snakeCtrl.signal_move(false)
-	#elif snakeCtrl.position.y < 60 && snakeCtrl.position.y > 665 :
-		#snakeCtrl.signal_move(false)
+func restart_game() -> void:
 	pass
+
+
+func _ready() -> void:
+	snakeCtrl.position = Vector2(640, 300) # 控制器位置
+
+
+func _process(delta: float) -> void:
+	# 蛇的位置相对于控制器是(0, 0)，要做偏移
+	if snakeCtrl.snake.position.x + 640 < 65 || snakeCtrl.snake.position.x + 640 > 1215 :
+		snakeCtrl.signal_move.emit(false)
+	elif snakeCtrl.snake.position.y + 300 < 60 || snakeCtrl.snake.position.y + 300 > 665 :
+		snakeCtrl.signal_move.emit(false)
