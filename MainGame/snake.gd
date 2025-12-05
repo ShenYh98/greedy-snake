@@ -26,13 +26,13 @@ func _move(value) -> void:
 
 # 获取键盘信息
 func _input(event: InputEvent) -> void:
-	is_move = true
-	
-	body_orientation(event)
+	if is_move:
+		body_orientation(event)
 
 
 func _ready() -> void:
 	print("snake sprite is ready")
+	is_move = true
 
 
 func _process(delta: float) -> void:
