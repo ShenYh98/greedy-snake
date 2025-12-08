@@ -83,7 +83,7 @@ func _ready() -> void:
 		returnButton.pressed.connect(_on_return_button_pressed)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if gameState ==  STATE.RUN:
 		# 蛇的位置相对于控制器是(0, 0)，要做偏移
 		if snakeCtrl.snake.position.x + 640 < 65 || snakeCtrl.snake.position.x + 640 > 1215 :

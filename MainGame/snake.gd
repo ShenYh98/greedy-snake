@@ -1,4 +1,4 @@
-extends Sprite2D
+extends CharacterBody2D
 
 @onready var snakeHead = $Head
 @onready var snakeBody = $Body
@@ -49,5 +49,9 @@ func _process(delta: float) -> void:
 		if direction_in != Vector2.ZERO:
 			direction_cur = direction_in
 			position += direction_cur * 100 * delta
+			velocity = direction_cur * 100 * delta # 碰撞体参数
 		else:
 			position += direction_cur * 100 * delta
+			velocity = direction_cur * 100 * delta # 碰撞体参数
+			
+		move_and_slide()
