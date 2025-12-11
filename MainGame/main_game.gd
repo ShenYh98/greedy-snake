@@ -35,13 +35,15 @@ func _on_start_button_pressed() -> void:
 	print("重新开始游戏")
 	gameOverPanel.visible = false
 	gamePausePanel.visible = false
-	snakeCtrl.snake.position = Vector2.ZERO
+	snakeCtrl.snake.snakeBody.position = Vector2.ZERO
 	snakeCtrl.signal_move.emit(true)
 	gameState = STATE.RUN
 
 
 func _ready() -> void:
 	print("main game is ready")
+
+	
 	snakeCtrl.position = Vector2(640, 300) # 控制器位置
 	gameOverPanel.position = Vector2(365, 170)
 	gameOverPanel.visible = false
@@ -85,13 +87,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if gameState ==  STATE.RUN:
-		# 蛇的位置相对于控制器是(0, 0)，要做偏移
-		if snakeCtrl.snake.position.x + 640 < 65 || snakeCtrl.snake.position.x + 640 > 1215 :
+		if snakeCtrl.snake.snakeBody.position.x + 640 < 65 || snakeCtrl.snake.snakeBody.position.x + 640 > 1215 :
 			snakeCtrl.signal_move.emit(false)
 			gameOverPanel.visible = true
 			gameState = STATE.OVER
 			print("Game Over!!!")
-		elif snakeCtrl.snake.position.y + 300 < 60 || snakeCtrl.snake.position.y + 300 > 665 :
+		elif snakeCtrl.snake.snakeBody.position.y + 300 < 60 || snakeCtrl.snake.snakeBody.position.y + 300 > 665 :
 			snakeCtrl.signal_move.emit(false)
 			gameOverPanel.visible = true
 			gameState = STATE.OVER

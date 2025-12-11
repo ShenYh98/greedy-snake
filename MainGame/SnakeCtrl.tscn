@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqt4y8o4nvv83"]
 
 [ext_resource type="Script" uid="uid://dv5ctb47in4g6" path="res://MainGame/snake_ctrl.gd" id="1_c3hy1"]
-[ext_resource type="PackedScene" uid="uid://cl7kw065e7wme" path="res://MainGame/snake.tscn" id="1_y3f7f"]
+[ext_resource type="PackedScene" uid="uid://cl7kw065e7wme" path="res://MainGame/snake/snake.tscn" id="1_y3f7f"]
 
 [node name="SnakeCtrl" type="Control"]
 layout_mode = 3

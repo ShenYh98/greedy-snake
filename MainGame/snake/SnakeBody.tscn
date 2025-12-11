@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8lsj2wmevxbh"]
+
+[ext_resource type="Texture2D" uid="uid://d2mktk3b3jeg8" path="res://MainGame/icon.svg" id="1_on0l8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8rck"]
+radius = 44.922153
+
+[node name="SnakeBody" type="CharacterBody2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.689)
+texture = ExtResource("1_on0l8")
+
+[node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t8rck")
+debug_color = Color(0.25766706, 0.60301304, 0.55937845, 0.41960785)
