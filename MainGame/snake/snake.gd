@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 @onready var snakeBody = $SnakeBody
 
-var direction_in = Vector2.ZERO
-var direction_cur = Vector2.ZERO
-@export var is_move : bool
-@export var speed : float = 100.0
-var body_parts: Array
-var body_direction: Array
-var body_direction_point: Dictionary[int, Array]
+var direction_in = Vector2.ZERO						# 控制器下发移动方向
+var direction_cur = Vector2.ZERO						# 当前移动方向
+@export var is_move : bool							# 是否移动标志位
+@export var speed : float = 100.0					# 移动速度
+var body_parts: Array								# 蛇身队列
+var body_direction: Array							# 每个蛇身节点移动方向
+var body_direction_point: Dictionary[int, Array]		# 将蛇头位置变化记录到这个字典中
 
 # 蛇前后左右移动
 func body_orientation(event: InputEvent) -> void:
