@@ -37,20 +37,23 @@ func _on_start_button_pressed() -> void:
 	gamePausePanel.visible = false
 	snakeCtrl.snake.snakeBody.position = Vector2.ZERO
 	snakeCtrl.signal_move.emit(true)
+	snakeCtrl.signal_clear_body.emit()
 	gameState = STATE.RUN
 
 
 func _ready() -> void:
 	print("main game is ready")
 
-	
 	snakeCtrl.position = Vector2(640, 300) # 控制器位置
 	gameOverPanel.position = Vector2(365, 170)
 	gameOverPanel.visible = false
 	gamePausePanel.position = Vector2(365, 170)
 	gamePausePanel.visible = false
-
+	
 	gameState = STATE.RUN
+	
+	for i in range(10):
+		snakeCtrl.signal_add_body.emit()
 
 	if quitButton:
 		# 先断开可能存在的旧连接，避免重复
