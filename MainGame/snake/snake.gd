@@ -3,12 +3,11 @@ extends CharacterBody2D
 @onready var snakeBody = $SnakeBody
 
 var direction_in = Vector2.ZERO						# 控制器下发移动方向
-var direction_cur = Vector2.ZERO						# 当前移动方向
 @export var is_move : bool							# 是否移动标志位
 @export var speed : float = 100.0					# 移动速度
 var body_parts: Array								# 蛇身队列
 var body_direction: Array							# 每个蛇身节点移动方向
-var body_direction_point: Dictionary[int, Array]		# 将蛇头位置变化记录到这个字典中
+var body_direction_point: Dictionary[int, Array]		# 将拐点变化记录到这个字典中
 
 # 蛇前后左右移动
 func body_orientation(event: InputEvent) -> void:
@@ -43,9 +42,10 @@ func body_orientation(event: InputEvent) -> void:
 					body_direction_point[i].push_back(pos)
 
 
-func turn_direction(curPos, pos, direction) -> bool:
+func turn_direction(num, size, curPos, pos, direction) -> bool:
 	if curPos.distance_to(pos) < 1:
-		#print("到达： ", pos, " 方向： ", direction)
+		print("蛇身第", num, "段", " 拐点队列大小：", size, " 当前坐标:", curPos, " 到达坐标：", pos, " 方向：", direction)
+		print("误差：", curPos - pos)
 		if direction == Vector2.RIGHT:
 			return true
 		elif direction == Vector2.LEFT:
@@ -67,12 +67,24 @@ func _add_body() -> void:
 		var NewBody = preload("res://MainGame/snake/SnakeBody.tscn")
 		var newBody = NewBody.instantiate()
 
-		var last_part_pos = body_parts[-1].position
-		newBody.position = last_part_pos + Vector2(0, 80)
+		if body_direction[-1] == Vector2.UP:
+			newBody.position = body_parts[-1].position + Vector2(0, 80)
+		if body_direction[-1] == Vector2.DOWN:
+			newBody.position = body_parts[-1].position + Vector2(0, -80)
+		if body_direction[-1] == Vector2.LEFT:
+			newBody.position = body_parts[-1].position + Vector2(80, 0)
+		if body_direction[-1] == Vector2.RIGHT:
+			newBody.position = body_parts[-1].position + Vector2(-80, 0)
 
 		add_child(newBody)
 		body_parts.push_back(newBody)
-		body_direction.push_back(Vector2.UP);
+		body_direction.push_back(body_direction[-1]);
+		
+		# 复制上一个蛇身拐点数据到现在蛇身
+		if body_parts.size() > 2:
+			if body_direction_point.has(body_parts.size()-2):
+				body_direction_point[body_parts.size()-1] = []
+				body_direction_point[body_parts.size()-1] = body_direction_point[body_parts.size()-2]
 
 
 # 清空蛇身
@@ -84,7 +96,6 @@ func _clear_body() -> void:
 	body_parts.clear()
 	body_direction.clear()
 	body_direction_point.clear()
-	body_parts.push_back(snakeBody) # 重新添加蛇头
 
 
 func _move(value) -> void:
@@ -100,24 +111,21 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	print("snake sprite is ready")
 	is_move = true
-	direction_cur = Vector2.UP
 
 
 func _process(delta: float) -> void:
 	if is_move:
 		if direction_in != Vector2.ZERO:
-			direction_cur = direction_in
+			body_direction[0] = direction_in
 
-		body_parts[0].position += direction_cur * speed * delta
+		if !body_parts.is_empty():
+			body_parts[0].position += body_direction[0] * speed * delta
 
 		for i in range(1, body_parts.size()):
 			body_parts[i].position += body_direction[i] * speed * delta
-
 			if !body_direction_point.is_empty():
-				if !body_direction_point[i].is_empty():
-					if turn_direction(body_parts[i].position, body_direction_point[i][0].position, body_direction_point[i][0].directionFlag):
-						body_direction[i] = body_direction_point[i][0].directionFlag
-						body_direction_point[i].pop_front()
-
-		#velocity = direction_cur * 100 * delta # 碰撞体参数
-		#move_and_slide()
+				if body_direction_point.has(i):
+					if !body_direction_point[i].is_empty():
+						if turn_direction(i, body_direction_point[i].size(), body_parts[i].position, body_direction_point[i][0].position, body_direction_point[i][0].directionFlag):
+							body_direction[i] = body_direction_point[i][0].directionFlag
+							body_direction_point[i].pop_front()

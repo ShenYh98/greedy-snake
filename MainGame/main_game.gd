@@ -3,6 +3,7 @@ extends Node2D
 @onready var snakeCtrl = $SnakeCtrl
 @onready var gameOverPanel = $GameOverPanel
 @onready var gamePausePanel = $GamePausePanel
+@onready var snakeFood = $Food
 
 @export var quitButton = Button
 @export var restartButton = Button
@@ -12,7 +13,8 @@ extends Node2D
 @export var returnButton = Button
 enum STATE {RUN, OVER}
 @export var gameState : STATE
-
+@export var foodRadomX : float
+@export var foodRadomY : float
 
 func _on_return_button_pressed() -> void:
 	print("返回游戏")
@@ -36,9 +38,31 @@ func _on_start_button_pressed() -> void:
 	gameOverPanel.visible = false
 	gamePausePanel.visible = false
 	snakeCtrl.snake.snakeBody.position = Vector2.ZERO
-	snakeCtrl.signal_move.emit(true)
 	snakeCtrl.signal_clear_body.emit()
+	snakeCtrl.signal_add_body.emit()
+	snakeCtrl.signal_move.emit(true)
 	gameState = STATE.RUN
+	
+	var rng = RandomNumberGenerator.new()
+	var random_x = rng.randf_range(10, foodRadomX)
+	var random_y = rng.randf_range(10, foodRadomY)
+	snakeFood.position = Vector2(random_x, random_y)
+
+
+func _on_collision_occurred(body: Node2D) -> void:
+	print("蛇身发生碰撞，对象: ", body.name)
+	if body.name == "Food":
+		var rng = RandomNumberGenerator.new()
+		var random_x = rng.randf_range(10, foodRadomX)
+		var random_y = rng.randf_range(10, foodRadomY)
+		snakeFood.position = Vector2(random_x, random_y)
+		
+		snakeCtrl.signal_add_body.emit() # 创建一个蛇身
+	else:
+		snakeCtrl.signal_move.emit(false)
+		gameOverPanel.visible = true
+		gameState = STATE.OVER
+		print("Game Over!!!")
 
 
 func _ready() -> void:
@@ -52,8 +76,20 @@ func _ready() -> void:
 	
 	gameState = STATE.RUN
 	
-	for i in range(10):
-		snakeCtrl.signal_add_body.emit()
+	foodRadomX = 1240.0
+	foodRadomY = 700.0
+
+	# 食物位置随机生成
+	var rng = RandomNumberGenerator.new()
+	var random_x = rng.randf_range(10, foodRadomX)
+	var random_y = rng.randf_range(10, foodRadomY)
+	snakeFood.position = Vector2(random_x, random_y)
+	
+	# 默认要有一个蛇头
+	snakeCtrl.signal_add_body.emit()
+
+	# 蛇头蛇身碰撞信号
+	snakeCtrl.snake.snakeBody.collision_occurred.connect(_on_collision_occurred)
 
 	if quitButton:
 		# 先断开可能存在的旧连接，避免重复

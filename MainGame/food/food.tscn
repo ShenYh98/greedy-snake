@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://desn2pvr4mpxn"]
+
+[ext_resource type="Texture2D" uid="uid://d2mktk3b3jeg8" path="res://MainGame/icon.svg" id="1_1rdph"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1rdph"]
+radius = 28.635643
+
+[node name="Food" type="StaticBody2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.4375, 0.43749997)
+texture = ExtResource("1_1rdph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1rdph")
