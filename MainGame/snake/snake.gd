@@ -3,49 +3,39 @@ extends CharacterBody2D
 @onready var snakeBody = $SnakeBody
 
 var direction_in = Vector2.ZERO						# 控制器下发移动方向
+var body_direction = Vector2.ZERO					# 蛇身节点移动方向
 @export var is_move : bool							# 是否移动标志位
 @export var speed : float = 100.0					# 移动速度
+@export var posDistance : float = 1					# 蛇身跟随距离
 var body_parts: Array								# 蛇身队列
-var body_direction: Array							# 每个蛇身节点移动方向
-var body_direction_point: Dictionary[int, Array]		# 将拐点变化记录到这个字典中
+
+
+func create_debug_marker(position: Vector2, direction: Vector2):
+	var NewMarker = preload("res://MainGame/snake/marker.tscn")
+	var marker = NewMarker.instantiate()
+	marker.position = position
+	marker.set_direction(direction)  # 如果Marker有这个方法
+	
+	# 添加到当前场景
+	get_parent().add_child(marker)
+
 
 # 蛇前后左右移动
 func body_orientation(event: InputEvent) -> void:
 	if event is InputEventKey:
-		var pos
 		if event.pressed and event.keycode == KEY_D || event.keycode == KEY_RIGHT:
-			pos = {
-				"directionFlag" : Vector2.RIGHT,
-				"position" : snakeBody.position
-			}
+			pass
 		if event.pressed and event.keycode == KEY_S || event.keycode == KEY_DOWN:
-			pos = {
-				"directionFlag" : Vector2.DOWN,
-				"position" : snakeBody.position
-			}
+			pass
 		if event.pressed and event.keycode == KEY_A || event.keycode == KEY_LEFT:
-			pos = {
-				"directionFlag" : Vector2.LEFT,
-				"position" : snakeBody.position
-			}
+			pass
 		if event.pressed and event.keycode == KEY_W || event.keycode == KEY_UP:
-			pos = {
-				"directionFlag" : Vector2.UP,
-				"position" : snakeBody.position
-			}
-		if event.pressed:
-			for i in range(1, body_parts.size()):
-				if body_direction_point.has(i):
-					body_direction_point[i].push_back(pos)
-				else:
-					body_direction_point[i] = []
-					body_direction_point[i].push_back(pos)
+			pass
 
 
-func turn_direction(num, size, curPos, pos, direction) -> bool:
-	if curPos.distance_to(pos) < 1:
-		print("蛇身第", num, "段", " 拐点队列大小：", size, " 当前坐标:", curPos, " 到达坐标：", pos, " 方向：", direction)
-		print("误差：", curPos - pos)
+func turn_direction(curPos, pos, direction) -> bool:
+	if curPos.distance_to(pos) < posDistance:
+		#print("当前坐标:", curPos, " 到达坐标：", pos, " 方向：", direction)
 		if direction == Vector2.RIGHT:
 			return true
 		elif direction == Vector2.LEFT:
@@ -62,29 +52,13 @@ func turn_direction(num, size, curPos, pos, direction) -> bool:
 func _add_body() -> void:
 	if body_parts.is_empty():
 		body_parts.push_back(snakeBody)
-		body_direction.push_back(Vector2.UP);
 	else:
 		var NewBody = preload("res://MainGame/snake/SnakeBody.tscn")
 		var newBody = NewBody.instantiate()
 
-		if body_direction[-1] == Vector2.UP:
-			newBody.position = body_parts[-1].position + Vector2(0, 80)
-		if body_direction[-1] == Vector2.DOWN:
-			newBody.position = body_parts[-1].position + Vector2(0, -80)
-		if body_direction[-1] == Vector2.LEFT:
-			newBody.position = body_parts[-1].position + Vector2(80, 0)
-		if body_direction[-1] == Vector2.RIGHT:
-			newBody.position = body_parts[-1].position + Vector2(-80, 0)
-
-		add_child(newBody)
+		newBody.position = body_parts[-1].position + Vector2(0, -80)
+		get_parent().add_child(newBody)
 		body_parts.push_back(newBody)
-		body_direction.push_back(body_direction[-1]);
-		
-		# 复制上一个蛇身拐点数据到现在蛇身
-		if body_parts.size() > 2:
-			if body_direction_point.has(body_parts.size()-2):
-				body_direction_point[body_parts.size()-1] = []
-				body_direction_point[body_parts.size()-1] = body_direction_point[body_parts.size()-2]
 
 
 # 清空蛇身
@@ -94,8 +68,6 @@ func _clear_body() -> void:
 			body_parts[i].queue_free()  # 从场景中删除节点
 
 	body_parts.clear()
-	body_direction.clear()
-	body_direction_point.clear()
 
 
 func _move(value) -> void:
@@ -116,16 +88,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_move:
 		if direction_in != Vector2.ZERO:
-			body_direction[0] = direction_in
+			body_direction = direction_in
 
 		if !body_parts.is_empty():
-			body_parts[0].position += body_direction[0] * speed * delta
+			body_parts[0].position += body_direction * speed * delta
 
 		for i in range(1, body_parts.size()):
-			body_parts[i].position += body_direction[i] * speed * delta
-			if !body_direction_point.is_empty():
-				if body_direction_point.has(i):
-					if !body_direction_point[i].is_empty():
-						if turn_direction(i, body_direction_point[i].size(), body_parts[i].position, body_direction_point[i][0].position, body_direction_point[i][0].directionFlag):
-							body_direction[i] = body_direction_point[i][0].directionFlag
-							body_direction_point[i].pop_front()
+			var move_direction = (body_parts[i-1].position - body_parts[i].position).normalized()
+			if body_parts[i-1].position.distance_to(body_parts[i].position) < 80:
+				pass
+			else:
+				body_parts[i].position += move_direction * speed * delta
