@@ -15,8 +15,7 @@ func create_debug_marker(position: Vector2, direction: Vector2):
 	var marker = NewMarker.instantiate()
 	marker.position = position
 	marker.set_direction(direction)  # 如果Marker有这个方法
-	
-	# 添加到当前场景
+
 	get_parent().add_child(marker)
 
 
@@ -31,21 +30,6 @@ func body_orientation(event: InputEvent) -> void:
 			pass
 		if event.pressed and event.keycode == KEY_W || event.keycode == KEY_UP:
 			pass
-
-
-func turn_direction(curPos, pos, direction) -> bool:
-	if curPos.distance_to(pos) < posDistance:
-		#print("当前坐标:", curPos, " 到达坐标：", pos, " 方向：", direction)
-		if direction == Vector2.RIGHT:
-			return true
-		elif direction == Vector2.LEFT:
-			return true
-		elif direction == Vector2.DOWN:
-			return true
-		elif direction == Vector2.UP:
-			return true
-
-	return false
 
 
 # 新增蛇身
