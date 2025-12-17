@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk3hrtrk1rbdl"]
+[gd_scene load_steps=5 format=3 uid="uid://dk3hrtrk1rbdl"]
 
 [ext_resource type="PackedScene" uid="uid://cqt4y8o4nvv83" path="res://MainGame/SnakeCtrl.tscn" id="1_6bbl1"]
 [ext_resource type="Script" uid="uid://cow0144yi34g0" path="res://MainGame/main_game.gd" id="1_ry3at"]
 [ext_resource type="PackedScene" uid="uid://desn2pvr4mpxn" path="res://MainGame/food/food.tscn" id="3_vj0bg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vj0bg"]
+size = Vector2(1280, 720)
 
 [node name="MainGame" type="Node2D" node_paths=PackedStringArray("quitButton", "restartButton", "pauseButton", "pauseQuitButton", "pauseRestartButton", "returnButton")]
 script = ExtResource("1_ry3at")
@@ -12,6 +15,12 @@ pauseButton = NodePath("PauseButton")
 pauseQuitButton = NodePath("GamePausePanel/HBoxContainer/PauseQuitButton")
 pauseRestartButton = NodePath("GamePausePanel/HBoxContainer/PauseRestartButton")
 returnButton = NodePath("GamePausePanel/ReturnButton")
+
+[node name="playArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playArea"]
+position = Vector2(640, 360)
+shape = SubResource("RectangleShape2D_vj0bg")
 
 [node name="SnakeCtrl" parent="." instance=ExtResource("1_6bbl1")]
 offset_left = 640.0

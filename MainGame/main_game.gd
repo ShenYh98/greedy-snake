@@ -11,8 +11,6 @@ extends Node2D
 @export var pauseQuitButton = Button
 @export var pauseRestartButton = Button
 @export var returnButton = Button
-enum STATE {RUN, OVER}
-@export var gameState : STATE
 @export var foodRadomX : float
 @export var foodRadomY : float
 
@@ -41,7 +39,6 @@ func _on_start_button_pressed() -> void:
 	snakeCtrl.signal_clear_body.emit()
 	snakeCtrl.signal_add_body.emit()
 	snakeCtrl.signal_move.emit(true)
-	gameState = STATE.RUN
 	
 	var rng = RandomNumberGenerator.new()
 	var random_x = rng.randf_range(10, foodRadomX)
@@ -58,10 +55,17 @@ func _on_collision_occurred(body: Node2D) -> void:
 		snakeFood.position = Vector2(random_x, random_y)
 		
 		snakeCtrl.signal_add_body.emit() # 创建一个蛇身
-	else:
+	elif body.name == "SnakeBody" || body.name.contains("@Area2D@"):
 		snakeCtrl.signal_move.emit(false)
 		gameOverPanel.visible = true
-		gameState = STATE.OVER
+		print("Game Over!!!")
+
+
+func _on_collision_ended(body: Node2D) -> void:
+	print("蛇身离开区域，对象: ", body.name)
+	if body.name == "playArea":
+		snakeCtrl.signal_move.emit(false)
+		gameOverPanel.visible = true
 		print("Game Over!!!")
 
 
@@ -73,8 +77,6 @@ func _ready() -> void:
 	gameOverPanel.visible = false
 	gamePausePanel.position = Vector2(365, 170)
 	gamePausePanel.visible = false
-	
-	gameState = STATE.RUN
 	
 	foodRadomX = 1240.0
 	foodRadomY = 700.0
@@ -90,6 +92,8 @@ func _ready() -> void:
 
 	# 蛇头蛇身碰撞信号
 	snakeCtrl.snake.snakeBody.collision_occurred.connect(_on_collision_occurred)
+	# 游戏区域碰撞信号
+	snakeCtrl.snake.snakeBody.collision_ended.connect(_on_collision_ended)
 
 	if quitButton:
 		# 先断开可能存在的旧连接，避免重复
@@ -125,14 +129,4 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if gameState ==  STATE.RUN:
-		if snakeCtrl.snake.snakeBody.position.x + 640 < 65 || snakeCtrl.snake.snakeBody.position.x + 640 > 1215 :
-			snakeCtrl.signal_move.emit(false)
-			gameOverPanel.visible = true
-			gameState = STATE.OVER
-			print("Game Over!!!")
-		elif snakeCtrl.snake.snakeBody.position.y + 300 < 60 || snakeCtrl.snake.snakeBody.position.y + 300 > 665 :
-			snakeCtrl.signal_move.emit(false)
-			gameOverPanel.visible = true
-			gameState = STATE.OVER
-			print("Game Over!!!")
+	pass

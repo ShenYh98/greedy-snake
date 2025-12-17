@@ -6,7 +6,7 @@ var direction_in = Vector2.ZERO						# 控制器下发移动方向
 var body_direction = Vector2.ZERO					# 蛇身节点移动方向
 @export var is_move : bool							# 是否移动标志位
 @export var speed : float = 100.0					# 移动速度
-@export var posDistance : float = 1					# 蛇身跟随距离
+@export var body_distance : float = 40.0				# 蛇身跟随距离
 var body_parts: Array								# 蛇身队列
 
 
@@ -40,7 +40,8 @@ func _add_body() -> void:
 		var NewBody = preload("res://MainGame/snake/SnakeBody.tscn")
 		var newBody = NewBody.instantiate()
 
-		newBody.position = body_parts[-1].position + Vector2(0, -80)
+		var new_direction = -body_direction
+		newBody.position = body_parts[-1].position + new_direction * body_distance
 		get_parent().add_child(newBody)
 		body_parts.push_back(newBody)
 
@@ -79,7 +80,7 @@ func _process(delta: float) -> void:
 
 		for i in range(1, body_parts.size()):
 			var move_direction = (body_parts[i-1].position - body_parts[i].position).normalized()
-			if body_parts[i-1].position.distance_to(body_parts[i].position) < 80:
+			if body_parts[i-1].position.distance_to(body_parts[i].position) < body_distance:
 				pass
 			else:
 				body_parts[i].position += move_direction * speed * delta

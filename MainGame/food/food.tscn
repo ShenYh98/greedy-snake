@@ -1,15 +1,97 @@
-[gd_scene load_steps=3 format=3 uid="uid://desn2pvr4mpxn"]
+[gd_scene load_steps=14 format=3 uid="uid://desn2pvr4mpxn"]
 
-[ext_resource type="Texture2D" uid="uid://d2mktk3b3jeg8" path="res://MainGame/icon.svg" id="1_1rdph"]
+[ext_resource type="Texture2D" uid="uid://bhcco5wde7sf0" path="res://MainGame/food/slime spritesheet calciumtrice.png" id="2_o8sj8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj5hd"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(0, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yo67"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(32, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aje37"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(64, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p72wi"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(96, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24uqx"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(128, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jle0"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(160, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsfdr"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(192, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o012q"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(224, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjxiu"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(256, 0, 32, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2iuw"]
+atlas = ExtResource("2_o8sj8")
+region = Rect2(288, 0, 32, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1rdph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj5hd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yo67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aje37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p72wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24uqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jle0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsfdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o012q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjxiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2iuw")
+}],
+"loop": true,
+"name": &"AnimatedFood",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1rdph"]
-radius = 28.635643
+radius = 16.492422
 
 [node name="Food" type="StaticBody2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.4375, 0.43749997)
-texture = ExtResource("1_1rdph")
+[node name="AnimatedFood" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+scale = Vector2(3, 3.0952382)
+sprite_frames = SubResource("SpriteFrames_1rdph")
+animation = &"AnimatedFood"
+autoplay = "AnimatedFood"
+frame_progress = 0.379616
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1rdph")
