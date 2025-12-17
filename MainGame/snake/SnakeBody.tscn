@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8lsj2wmevxbh"]
+[gd_scene load_steps=24 format=3 uid="uid://b8lsj2wmevxbh"]
 
 [ext_resource type="Script" uid="uid://bdv64so7xptmd" path="res://MainGame/snake/snake_body.gd" id="1_t8rck"]
 [ext_resource type="Texture2D" uid="uid://dvdbd4a67jy4r" path="res://MainGame/snake/snake.png" id="2_t8rck"]
@@ -39,6 +39,46 @@ region = Rect2(224, 389, 32, 31)
 atlas = ExtResource("2_t8rck")
 region = Rect2(256, 389, 32, 31)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmtcg"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(0, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quyk8"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(32, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c24dl"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(64, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8vk5"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(96, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2nr5"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(128, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugoiv"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(160, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmi7x"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(192, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agkm5"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(224, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d7kx"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(256, 460, 32, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8b4f"]
+atlas = ExtResource("2_t8rck")
+region = Rect2(288, 460, 32, 20)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_t8rck"]
 animations = [{
 "frames": [{
@@ -72,6 +112,41 @@ animations = [{
 "loop": true,
 "name": &"AnimatedSnake",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmtcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quyk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c24dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8vk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2nr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugoiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmi7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agkm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d7kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8b4f")
+}],
+"loop": false,
+"name": &"AnimatedSnakeOver",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8rck"]
@@ -81,12 +156,12 @@ radius = 17.499998
 script = ExtResource("1_t8rck")
 
 [node name="AnimatedSnake" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -30.253004)
+position = Vector2(0, -26.253004)
 scale = Vector2(3.6250002, 3.8908129)
 sprite_frames = SubResource("SpriteFrames_t8rck")
-animation = &"AnimatedSnake"
-autoplay = "AnimatedSnake"
-frame_progress = 0.6281328
+animation = &"AnimatedSnakeOver"
+frame = 9
+frame_progress = 1.0
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
 scale = Vector2(0.8, 0.8)

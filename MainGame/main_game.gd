@@ -39,6 +39,7 @@ func _on_start_button_pressed() -> void:
 	snakeCtrl.signal_clear_body.emit()
 	snakeCtrl.signal_add_body.emit()
 	snakeCtrl.signal_move.emit(true)
+	snakeCtrl.signal_game_start.emit()
 	
 	var rng = RandomNumberGenerator.new()
 	var random_x = rng.randf_range(10, foodRadomX)
@@ -57,6 +58,7 @@ func _on_collision_occurred(body: Node2D) -> void:
 		snakeCtrl.signal_add_body.emit() # 创建一个蛇身
 	elif body.name == "SnakeBody" || body.name.contains("@Area2D@"):
 		snakeCtrl.signal_move.emit(false)
+		snakeCtrl.signal_game_over.emit()
 		gameOverPanel.visible = true
 		print("Game Over!!!")
 
@@ -65,6 +67,7 @@ func _on_collision_ended(body: Node2D) -> void:
 	print("蛇身离开区域，对象: ", body.name)
 	if body.name == "playArea":
 		snakeCtrl.signal_move.emit(false)
+		snakeCtrl.signal_game_over.emit()
 		gameOverPanel.visible = true
 		print("Game Over!!!")
 

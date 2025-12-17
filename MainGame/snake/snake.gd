@@ -59,6 +59,18 @@ func _move(value) -> void:
 	is_move = value
 
 
+# 游戏结束信号
+func _game_over() -> void:
+	print("游戏结束")
+	body_parts[0].animatedSnake.play("AnimatedSnakeOver")
+
+
+# 游戏开始信号
+func _game_start() -> void:
+	print("游戏开始")
+	body_parts[0].animatedSnake.play("AnimatedSnake")
+
+
 # 获取键盘信息
 func _input(event: InputEvent) -> void:
 	if is_move:
