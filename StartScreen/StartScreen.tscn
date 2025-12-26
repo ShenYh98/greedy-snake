@@ -1,27 +1,125 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqt1hm1g1ueh4"]
+[gd_scene load_steps=24 format=3 uid="uid://cqt1hm1g1ueh4"]
 
 [ext_resource type="Script" uid="uid://j5qorhtv8mn0" path="res://StartScreen/start_screen.gd" id="1_vdfby"]
-[ext_resource type="Texture2D" uid="uid://ce2yhyb4kef28" path="res://StartScreen/snakes/iso-snake-blue.png" id="2_cqtsi"]
-[ext_resource type="Script" uid="uid://yu8nckokdexd" path="res://StartScreen/snakes_animated.gd" id="3_4x1nq"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cqtsi"]
-atlas = ExtResource("2_cqtsi")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4x1nq"]
-atlas = ExtResource("2_cqtsi")
-region = Rect2(0, 32, 32, 32)
+[ext_resource type="Texture2D" uid="uid://cqt3nwni330iq" path="res://StartScreen/snakeAnimated.png" id="2_4x1nq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41jxu"]
-atlas = ExtResource("2_cqtsi")
-region = Rect2(0, 64, 32, 32)
+atlas = ExtResource("2_4x1nq")
+region = Rect2(0, 390, 32, 31)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h17d6"]
-atlas = ExtResource("2_cqtsi")
-region = Rect2(0, 96, 32, 32)
+atlas = ExtResource("2_4x1nq")
+region = Rect2(32, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a8ne"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(64, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwo8f"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(96, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yom0"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(128, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mrp3"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(160, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1k3s"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(192, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbu3x"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(224, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7amb"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(256, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjoxm"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(288, 390, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqtsi"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(0, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x1nq"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(32, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65gh0"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(64, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fflp"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(96, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow8vp"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(128, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgrc4"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(160, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hp5qy"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(192, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvl61"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(224, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekpm5"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(256, 359, 32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clfb5"]
+atlas = ExtResource("2_4x1nq")
+region = Rect2(288, 359, 32, 31)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0a8ne"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41jxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h17d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a8ne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwo8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yom0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mrp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1k3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbu3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7amb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjoxm")
+}],
+"loop": true,
+"name": &"snakes",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cqtsi")
@@ -30,13 +128,31 @@ animations = [{
 "texture": SubResource("AtlasTexture_4x1nq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_41jxu")
+"texture": SubResource("AtlasTexture_65gh0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h17d6")
+"texture": SubResource("AtlasTexture_2fflp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow8vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgrc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hp5qy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvl61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekpm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clfb5")
 }],
 "loop": true,
-"name": &"snakes",
+"name": &"snakes2",
 "speed": 5.0
 }]
 
@@ -70,9 +186,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 485.0
+offset_left = 480.0
 offset_top = 114.0
-offset_right = 667.0
+offset_right = 662.0
 offset_bottom = 114.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -86,9 +202,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 69.0
-offset_top = 426.0
-offset_right = 251.0
+offset_left = 70.0
+offset_top = 425.0
+offset_right = 252.0
 offset_bottom = 623.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -108,10 +224,7 @@ layout_mode = 2
 text = "退出"
 
 [node name="SnakesAnimated" type="AnimatedSprite2D" parent="."]
-position = Vector2(720, 520)
-scale = Vector2(6, 6)
+position = Vector2(200.00002, 485.00003)
+scale = Vector2(15, 15)
 sprite_frames = SubResource("SpriteFrames_0a8ne")
-animation = &"snakes"
-autoplay = "snakes"
-frame_progress = 0.6729457
-script = ExtResource("3_4x1nq")
+animation = &"snakes2"

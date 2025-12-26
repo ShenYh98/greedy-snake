@@ -162,6 +162,7 @@ sprite_frames = SubResource("SpriteFrames_t8rck")
 animation = &"AnimatedSnakeOver"
 frame = 9
 frame_progress = 1.0
+speed_scale = 2.0
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
 scale = Vector2(0.8, 0.8)
