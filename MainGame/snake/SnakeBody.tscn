@@ -168,3 +168,8 @@ speed_scale = 2.0
 scale = Vector2(0.8, 0.8)
 shape = SubResource("CircleShape2D_t8rck")
 debug_color = Color(0.25766706, 0.60301304, 0.55937845, 0.41960785)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
