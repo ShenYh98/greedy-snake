@@ -16,6 +16,9 @@ pauseQuitButton = NodePath("GamePausePanel/HBoxContainer/PauseQuitButton")
 pauseRestartButton = NodePath("GamePausePanel/HBoxContainer/PauseRestartButton")
 returnButton = NodePath("GamePausePanel/ReturnButton")
 
+[node name="MainGameCamera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
 [node name="playArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playArea"]

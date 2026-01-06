@@ -4,6 +4,7 @@ extends Node2D
 @onready var gameOverPanel = $GameOverPanel
 @onready var gamePausePanel = $GamePausePanel
 @onready var snakeFood = $Food
+@onready var mainGameCamera2D = $MainGameCamera2D
 
 @export var quitButton = Button
 @export var restartButton = Button
@@ -98,6 +99,8 @@ func _ready() -> void:
 	# 游戏区域碰撞信号
 	snakeCtrl.snake.snakeBody.collision_ended.connect(_on_collision_ended)
 
+	mainGameCamera2D.zoom = Vector2(0.5, 0.5)
+
 	if quitButton:
 		# 先断开可能存在的旧连接，避免重复
 		if quitButton.pressed.is_connected(_on_quit_button_pressed):
@@ -132,4 +135,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	pass
+	# 增加一个视觉缩放效果
+	if mainGameCamera2D.zoom < Vector2(1, 1):
+		mainGameCamera2D.zoom += Vector2(0.008, 0.008)
