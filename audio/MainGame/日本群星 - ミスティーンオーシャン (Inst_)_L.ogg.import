@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://uf2wg7xwwttu"
+path="res://.godot/imported/日本群星 - ミスティーンオーシャン (Inst_)_L.ogg-7a7a88b734afb4d7f2102ed66a1012ee.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/MainGame/日本群星 - ミスティーンオーシャン (Inst_)_L.ogg"
+dest_files=["res://.godot/imported/日本群星 - ミスティーンオーシャン (Inst_)_L.ogg-7a7a88b734afb4d7f2102ed66a1012ee.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

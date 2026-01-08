@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var snakeBody = $SnakeBody
 @onready var snakeCtrlCamera2D: Camera2D = $SnakeBody/SnakeCtrlCamera2D
+@onready var gameOverAudio: AudioStreamPlayer2D = $SnakeBody/GameOverAudio
+@onready var eatAudio: AudioStreamPlayer2D =  $SnakeBody/EatAudio
 
 var direction_in = Vector2.ZERO						# 控制器下发移动方向
 var body_direction = Vector2.ZERO					# 蛇身节点移动方向
@@ -38,6 +40,7 @@ func _add_body() -> void:
 	if body_parts.is_empty():
 		body_parts.push_back(snakeBody)
 	else:
+		eatAudio.play() # 新增蛇身播放音效
 		var NewBody = preload("res://MainGame/snake/SnakeBody.tscn")
 		var newBody = NewBody.instantiate()
 
@@ -63,6 +66,7 @@ func _move(value) -> void:
 # 游戏结束信号
 func _game_over() -> void:
 	print("游戏结束")
+	gameOverAudio.play()
 	body_parts[0].animatedSnake.play("AnimatedSnakeOver")
 
 

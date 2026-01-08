@@ -27,7 +27,7 @@ func _on_start_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	# 切换到设置场景，请将路径替换为你的实际设置场景文件路径
 	print("打开设置")
-	get_tree().change_scene_to_file("res://Settings/Settings.tscn")
+	get_tree().change_scene_to_file("res://Theme/Settings/Settings.tscn")
 
 
 # 当“退出游戏”按钮被按下
@@ -73,9 +73,9 @@ func _process(delta: float) -> void:
 
 		if start_screen_title.position.y < 114:
 			start_screen_title.position +=  Vector2.DOWN * title_speed * delta
-			
+
 		if start_screen_btns.position.x < 70:
 			start_screen_btns.position += Vector2.RIGHT * start_screen_btns_speed * delta
-			
+
 		if start_screen_title.position.y >= 114 && start_screen_btns.position.x >= 70:
 			GlobalState.is_load = true

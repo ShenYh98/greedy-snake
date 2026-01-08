@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cqt1hm1g1ueh4"]
+[gd_scene load_steps=26 format=3 uid="uid://cqt1hm1g1ueh4"]
 
-[ext_resource type="Script" uid="uid://j5qorhtv8mn0" path="res://StartScreen/start_screen.gd" id="1_vdfby"]
-[ext_resource type="Texture2D" uid="uid://cqt3nwni330iq" path="res://StartScreen/snakeAnimated.png" id="2_4x1nq"]
+[ext_resource type="Script" uid="uid://j5qorhtv8mn0" path="res://Theme/StartScreen/start_screen.gd" id="1_vdfby"]
+[ext_resource type="Texture2D" uid="uid://cqt3nwni330iq" path="res://Theme/StartScreen/snakeAnimated.png" id="2_4x1nq"]
 [ext_resource type="AudioStream" uid="uid://shdfn4nt75xg" path="res://audio/item.mp3" id="3_4x1nq"]
+[ext_resource type="AudioStream" uid="uid://wuufmrhr1aaw" path="res://audio/StartScreen/日本群星 - GREEN GREENS (星のカービィ)_L.ogg" id="4_0nplc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41jxu"]
 atlas = ExtResource("2_4x1nq")
@@ -230,5 +231,10 @@ scale = Vector2(15, 15)
 sprite_frames = SubResource("SpriteFrames_0a8ne")
 animation = &"snakes2"
 
-[node name="SelectAudio" type="AudioStreamPlayer2D" parent="."]
+[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4x1nq")
+volume_db = 4.0
+
+[node name="ThemeMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0nplc")
+autoplay = true

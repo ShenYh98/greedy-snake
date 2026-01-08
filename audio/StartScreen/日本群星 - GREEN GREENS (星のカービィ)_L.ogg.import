@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://wuufmrhr1aaw"
+path="res://.godot/imported/日本群星 - GREEN GREENS (星のカービィ)_L.ogg-b1077b226258599da98b05a69179d5ee.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/StartScreen/日本群星 - GREEN GREENS (星のカービィ)_L.ogg"
+dest_files=["res://.godot/imported/日本群星 - GREEN GREENS (星のカービィ)_L.ogg-b1077b226258599da98b05a69179d5ee.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl7kw065e7wme"]
+[gd_scene load_steps=6 format=3 uid="uid://cl7kw065e7wme"]
 
 [ext_resource type="Script" uid="uid://btf0l6x6pyfvb" path="res://MainGame/snake/snake.gd" id="1_q5ohc"]
+[ext_resource type="AudioStream" uid="uid://b3g4ffpjmxf77" path="res://audio/MainGame/organic_impact.mp3" id="3_i0unk"]
 [ext_resource type="PackedScene" uid="uid://b1kustvqbyoc4" path="res://MainGame/snake/marker.tscn" id="3_q0g68"]
 [ext_resource type="PackedScene" uid="uid://b8lsj2wmevxbh" path="res://MainGame/snake/SnakeBody.tscn" id="3_u1jyk"]
+[ext_resource type="AudioStream" uid="uid://dnor04bseja4w" path="res://audio/MainGame/pop.ogg" id="4_i0unk"]
 
 [node name="Snake" type="CharacterBody2D"]
 script = ExtResource("1_q5ohc")
 
 [node name="SnakeBody" parent="." instance=ExtResource("3_u1jyk")]
+
+[node name="GameOverAudio" type="AudioStreamPlayer2D" parent="SnakeBody"]
+stream = ExtResource("3_i0unk")
+
+[node name="EatAudio" type="AudioStreamPlayer2D" parent="SnakeBody"]
+stream = ExtResource("4_i0unk")
+volume_db = 20.0
 
 [node name="SnakeCtrlCamera2D" type="Camera2D" parent="SnakeBody"]
 position = Vector2(0, -1)

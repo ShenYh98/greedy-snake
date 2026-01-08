@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2370lsy3el4l"
-path="res://.godot/imported/musicOn.svg-d61e83774872402021645acb0eff80f5.ctex"
+path="res://.godot/imported/musicOn.svg-7ba7953806241f5b372a5d4ca1d1958b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Settings/musicOn.svg"
-dest_files=["res://.godot/imported/musicOn.svg-d61e83774872402021645acb0eff80f5.ctex"]
+source_file="res://Theme/Settings/musicOn.svg"
+dest_files=["res://.godot/imported/musicOn.svg-7ba7953806241f5b372a5d4ca1d1958b.ctex"]
 
 [params]
 

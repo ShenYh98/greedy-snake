@@ -31,7 +31,7 @@ func _on_pause_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	print("返回开始界面")
-	get_tree().change_scene_to_file("res://StartScreen/StartScreen.tscn")
+	get_tree().change_scene_to_file("res://Theme/StartScreen/StartScreen.tscn")
 
 
 func _on_start_button_pressed() -> void:

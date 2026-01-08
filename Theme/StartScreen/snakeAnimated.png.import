@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqt3nwni330iq"
-path="res://.godot/imported/snakeAnimated.png-0312ef6f695facbad7e8298d0da9f5f8.ctex"
+path="res://.godot/imported/snakeAnimated.png-25651d21ffcc9d7908f6eb791dc7b376.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StartScreen/snakeAnimated.png"
-dest_files=["res://.godot/imported/snakeAnimated.png-0312ef6f695facbad7e8298d0da9f5f8.ctex"]
+source_file="res://Theme/StartScreen/snakeAnimated.png"
+dest_files=["res://.godot/imported/snakeAnimated.png-25651d21ffcc9d7908f6eb791dc7b376.ctex"]
 
 [params]
 

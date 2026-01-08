@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dk3hrtrk1rbdl"]
+[gd_scene load_steps=15 format=3 uid="uid://dk3hrtrk1rbdl"]
 
 [ext_resource type="PackedScene" uid="uid://cqt4y8o4nvv83" path="res://MainGame/SnakeCtrl.tscn" id="1_6bbl1"]
 [ext_resource type="Script" uid="uid://cow0144yi34g0" path="res://MainGame/main_game.gd" id="1_ry3at"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://chemksbpyfid0" path="res://MainGame/ground/moss_4.png" id="6_2mqu7"]
 [ext_resource type="Texture2D" uid="uid://och86bahnlp3" path="res://MainGame/ground/moss_5.png" id="7_f0e2v"]
 [ext_resource type="Texture2D" uid="uid://cwubwdr5447jr" path="res://MainGame/ground/tile/outside_walls.png" id="8_2vdra"]
+[ext_resource type="AudioStream" uid="uid://uf2wg7xwwttu" path="res://audio/MainGame/日本群星 - ミスティーンオーシャン (Inst_)_L.ogg" id="11_dwi20"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwi20"]
 resource_name = "walls"
@@ -242,3 +243,7 @@ offset_bottom = 300.0
 
 [node name="Food" parent="." instance=ExtResource("3_vj0bg")]
 position = Vector2(1995, 1100)
+
+[node name="MainGameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_dwi20")
+autoplay = true

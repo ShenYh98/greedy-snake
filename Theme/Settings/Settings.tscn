@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cudo33tr8xcyg"]
+[gd_scene load_steps=5 format=3 uid="uid://cudo33tr8xcyg"]
 
-[ext_resource type="Script" uid="uid://b77l6wtbf4thp" path="res://Settings/settings.gd" id="1_w44vd"]
-[ext_resource type="Texture2D" uid="uid://brlssqwovojgd" path="res://Settings/back.svg" id="2_246cf"]
+[ext_resource type="Script" uid="uid://b77l6wtbf4thp" path="res://Theme/Settings/settings.gd" id="1_w44vd"]
+[ext_resource type="Texture2D" uid="uid://brlssqwovojgd" path="res://Theme/Settings/back.svg" id="2_246cf"]
+[ext_resource type="AudioStream" uid="uid://bl3nk446hjimx" path="res://audio/Setting/日本群星 - セレクトリンク (Inst_)_L.ogg" id="3_6krq0"]
+[ext_resource type="AudioStream" uid="uid://shdfn4nt75xg" path="res://audio/item.mp3" id="4_6krq0"]
 
 [node name="Settings" type="Control" node_paths=PackedStringArray("music_on_button", "music_off_button", "back_button", "music_icon")]
 layout_mode = 3
@@ -72,3 +74,10 @@ offset_right = 143.0
 offset_bottom = 136.0
 icon = ExtResource("2_246cf")
 flat = true
+
+[node name="SettingMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6krq0")
+
+[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6krq0")
+volume_db = 4.0

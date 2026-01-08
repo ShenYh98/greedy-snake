@@ -159,9 +159,8 @@ script = ExtResource("1_t8rck")
 position = Vector2(0, -26.253004)
 scale = Vector2(3.6250002, 3.8908129)
 sprite_frames = SubResource("SpriteFrames_t8rck")
-animation = &"AnimatedSnakeOver"
-frame = 9
-frame_progress = 1.0
+animation = &"AnimatedSnake"
+frame_progress = 0.22374782
 speed_scale = 2.0
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
