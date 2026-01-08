@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 @onready var snakeBody = $SnakeBody
+@onready var snakeCtrlCamera2D: Camera2D = $SnakeBody/SnakeCtrlCamera2D
 
 var direction_in = Vector2.ZERO						# 控制器下发移动方向
 var body_direction = Vector2.ZERO					# 蛇身节点移动方向
 @export var is_move : bool							# 是否移动标志位
-@export var speed : float = 100.0					# 移动速度
+@export var speed : float = 150.0					# 移动速度
 @export var body_distance : float = 40.0				# 蛇身跟随距离
 var body_parts: Array								# 蛇身队列
 
@@ -79,10 +80,15 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	print("snake sprite is ready")
+	snakeCtrlCamera2D.zoom = Vector2(0.5, 0.5)
 	is_move = true
 
 
 func _process(delta: float) -> void:
+	# 增加一个视觉缩放效果
+	if snakeCtrlCamera2D.zoom < Vector2(1, 1):
+		snakeCtrlCamera2D.zoom += Vector2(0.008, 0.008)
+
 	if is_move:
 		if direction_in != Vector2.ZERO:
 			body_direction = direction_in

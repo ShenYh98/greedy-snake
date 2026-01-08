@@ -9,6 +9,8 @@ extends Control
 @onready var snakesAnimated = $SnakesAnimated
 @export var snakesAnimated_speed:float = 200.0
 
+@onready var selectAudio = $SelectAudio
+
 @export var start_button: Button
 @export var settings_button: Button
 @export var quit_button: Button
@@ -34,6 +36,11 @@ func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 
+# 鼠标悬停音效
+func _mouse_entered() -> void:
+	selectAudio.play()
+
+
 func _ready() -> void:
 	if !GlobalState.is_load:
 		start_screen_title.position = Vector2(480, -70)
@@ -49,10 +56,13 @@ func _ready() -> void:
 	# 检查并连接每个按钮的 pressed 信号到对应的处理函数
 	if start_button:
 		start_button.pressed.connect(_on_start_button_pressed)
+		start_button.mouse_entered.connect(_mouse_entered)
 	if settings_button:
 		settings_button.pressed.connect(_on_settings_button_pressed)
+		settings_button.mouse_entered.connect(_mouse_entered)
 	if quit_button:
 		quit_button.pressed.connect(_on_quit_button_pressed)
+		quit_button.mouse_entered.connect(_mouse_entered)
 
 
 func _process(delta: float) -> void:

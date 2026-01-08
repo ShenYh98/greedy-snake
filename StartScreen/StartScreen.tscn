@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cqt1hm1g1ueh4"]
+[gd_scene load_steps=25 format=3 uid="uid://cqt1hm1g1ueh4"]
 
 [ext_resource type="Script" uid="uid://j5qorhtv8mn0" path="res://StartScreen/start_screen.gd" id="1_vdfby"]
 [ext_resource type="Texture2D" uid="uid://cqt3nwni330iq" path="res://StartScreen/snakeAnimated.png" id="2_4x1nq"]
+[ext_resource type="AudioStream" uid="uid://shdfn4nt75xg" path="res://audio/item.mp3" id="3_4x1nq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41jxu"]
 atlas = ExtResource("2_4x1nq")
@@ -228,3 +229,6 @@ position = Vector2(200.00002, 485.00003)
 scale = Vector2(15, 15)
 sprite_frames = SubResource("SpriteFrames_0a8ne")
 animation = &"snakes2"
+
+[node name="SelectAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4x1nq")

@@ -9,4 +9,8 @@ script = ExtResource("1_q5ohc")
 
 [node name="SnakeBody" parent="." instance=ExtResource("3_u1jyk")]
 
+[node name="SnakeCtrlCamera2D" type="Camera2D" parent="SnakeBody"]
+position = Vector2(0, -1)
+position_smoothing_enabled = true
+
 [node name="Marker" parent="." instance=ExtResource("3_q0g68")]

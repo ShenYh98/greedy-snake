@@ -1,10 +1,9 @@
 extends Node2D
 
 @onready var snakeCtrl = $SnakeCtrl
-@onready var gameOverPanel = $GameOverPanel
-@onready var gamePausePanel = $GamePausePanel
+@onready var gameOverPanel = $CanvasLayer/GameOverPanel
+@onready var gamePausePanel = $CanvasLayer/GamePausePanel
 @onready var snakeFood = $Food
-@onready var mainGameCamera2D = $MainGameCamera2D
 
 @export var quitButton = Button
 @export var restartButton = Button
@@ -12,8 +11,11 @@ extends Node2D
 @export var pauseQuitButton = Button
 @export var pauseRestartButton = Button
 @export var returnButton = Button
-@export var foodRadomX : float
-@export var foodRadomY : float
+@export var foodRadomX_min : float
+@export var foodRadomX_max : float
+@export var foodRadomY_min : float
+@export var foodRadomY_max : float
+
 
 func _on_return_button_pressed() -> void:
 	print("返回游戏")
@@ -43,8 +45,8 @@ func _on_start_button_pressed() -> void:
 	snakeCtrl.signal_game_start.emit()
 	
 	var rng = RandomNumberGenerator.new()
-	var random_x = rng.randf_range(10, foodRadomX)
-	var random_y = rng.randf_range(10, foodRadomY)
+	var random_x = rng.randf_range(foodRadomX_min, foodRadomX_max)
+	var random_y = rng.randf_range(foodRadomY_min, foodRadomY_max)
 	snakeFood.position = Vector2(random_x, random_y)
 
 
@@ -52,8 +54,8 @@ func _on_collision_occurred(body: Node2D) -> void:
 	print("蛇身发生碰撞，对象: ", body.name)
 	if body.name == "Food":
 		var rng = RandomNumberGenerator.new()
-		var random_x = rng.randf_range(10, foodRadomX)
-		var random_y = rng.randf_range(10, foodRadomY)
+		var random_x = rng.randf_range(foodRadomX_min, foodRadomX_max)
+		var random_y = rng.randf_range(foodRadomY_min, foodRadomY_max)
 		snakeFood.position = Vector2(random_x, random_y)
 		
 		snakeCtrl.signal_add_body.emit() # 创建一个蛇身
@@ -82,15 +84,17 @@ func _ready() -> void:
 	gamePausePanel.position = Vector2(365, 170)
 	gamePausePanel.visible = false
 	
-	foodRadomX = 1240.0
-	foodRadomY = 700.0
+	foodRadomX_min = 160.0
+	foodRadomX_max = 1995.0
+	foodRadomY_min = 160.0
+	foodRadomY_max = 1100.0
 
 	# 食物位置随机生成
 	var rng = RandomNumberGenerator.new()
-	var random_x = rng.randf_range(10, foodRadomX)
-	var random_y = rng.randf_range(10, foodRadomY)
+	var random_x = rng.randf_range(foodRadomX_min, foodRadomX_max)
+	var random_y = rng.randf_range(foodRadomY_min, foodRadomY_max)
 	snakeFood.position = Vector2(random_x, random_y)
-	
+
 	# 默认要有一个蛇头
 	snakeCtrl.signal_add_body.emit()
 
@@ -98,8 +102,6 @@ func _ready() -> void:
 	snakeCtrl.snake.snakeBody.collision_occurred.connect(_on_collision_occurred)
 	# 游戏区域碰撞信号
 	snakeCtrl.snake.snakeBody.collision_ended.connect(_on_collision_ended)
-
-	mainGameCamera2D.zoom = Vector2(0.5, 0.5)
 
 	if quitButton:
 		# 先断开可能存在的旧连接，避免重复
@@ -132,9 +134,3 @@ func _ready() -> void:
 		if returnButton.pressed.is_connected(_on_return_button_pressed):
 			returnButton.pressed.disconnect(_on_return_button_pressed)
 		returnButton.pressed.connect(_on_return_button_pressed)
-
-
-func _process(_delta: float) -> void:
-	# 增加一个视觉缩放效果
-	if mainGameCamera2D.zoom < Vector2(1, 1):
-		mainGameCamera2D.zoom += Vector2(0.008, 0.008)

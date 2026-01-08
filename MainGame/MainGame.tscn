@@ -1,49 +1,93 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk3hrtrk1rbdl"]
+[gd_scene load_steps=14 format=3 uid="uid://dk3hrtrk1rbdl"]
 
 [ext_resource type="PackedScene" uid="uid://cqt4y8o4nvv83" path="res://MainGame/SnakeCtrl.tscn" id="1_6bbl1"]
 [ext_resource type="Script" uid="uid://cow0144yi34g0" path="res://MainGame/main_game.gd" id="1_ry3at"]
+[ext_resource type="Texture2D" uid="uid://dbsnb7gkw77k3" path="res://MainGame/ground/stones.png" id="2_yfhen"]
+[ext_resource type="Texture2D" uid="uid://rk0g1tomsc31" path="res://MainGame/ground/moss_1.png" id="3_ogotu"]
 [ext_resource type="PackedScene" uid="uid://desn2pvr4mpxn" path="res://MainGame/food/food.tscn" id="3_vj0bg"]
+[ext_resource type="Texture2D" uid="uid://b305fsubx40nf" path="res://MainGame/ground/moss_2.png" id="4_2vdra"]
+[ext_resource type="Texture2D" uid="uid://70dre475226" path="res://MainGame/ground/moss_3.png" id="5_dwi20"]
+[ext_resource type="Texture2D" uid="uid://chemksbpyfid0" path="res://MainGame/ground/moss_4.png" id="6_2mqu7"]
+[ext_resource type="Texture2D" uid="uid://och86bahnlp3" path="res://MainGame/ground/moss_5.png" id="7_f0e2v"]
+[ext_resource type="Texture2D" uid="uid://cwubwdr5447jr" path="res://MainGame/ground/tile/outside_walls.png" id="8_2vdra"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwi20"]
+resource_name = "walls"
+texture = ExtResource("8_2vdra")
+margins = Vector2i(150, 150)
+texture_region_size = Vector2i(180, 180)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+5:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+4:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ogotu"]
+tile_size = Vector2i(180, 180)
+sources/0 = SubResource("TileSetAtlasSource_dwi20")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vj0bg"]
-size = Vector2(1230, 632)
+size = Vector2(1893, 995)
 
 [node name="MainGame" type="Node2D" node_paths=PackedStringArray("quitButton", "restartButton", "pauseButton", "pauseQuitButton", "pauseRestartButton", "returnButton")]
 script = ExtResource("1_ry3at")
-quitButton = NodePath("GameOverPanel/HBoxContainer/QuitButton")
-restartButton = NodePath("GameOverPanel/HBoxContainer/StartButton")
-pauseButton = NodePath("PauseButton")
-pauseQuitButton = NodePath("GamePausePanel/HBoxContainer/PauseQuitButton")
-pauseRestartButton = NodePath("GamePausePanel/HBoxContainer/PauseRestartButton")
-returnButton = NodePath("GamePausePanel/ReturnButton")
+quitButton = NodePath("CanvasLayer/GameOverPanel/HBoxContainer/QuitButton")
+restartButton = NodePath("CanvasLayer/GameOverPanel/HBoxContainer/StartButton")
+pauseButton = NodePath("CanvasLayer/PauseButton")
+pauseQuitButton = NodePath("CanvasLayer/GamePausePanel/HBoxContainer/PauseQuitButton")
+pauseRestartButton = NodePath("CanvasLayer/GamePausePanel/HBoxContainer/PauseRestartButton")
+returnButton = NodePath("CanvasLayer/GamePausePanel/ReturnButton")
 
-[node name="MainGameCamera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="playArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="playArea"]
-position = Vector2(640, 360)
-shape = SubResource("RectangleShape2D_vj0bg")
-
-[node name="SnakeCtrl" parent="." instance=ExtResource("1_6bbl1")]
-offset_left = 640.0
-offset_top = 300.0
-offset_right = 640.0
-offset_bottom = 300.0
-
-[node name="PauseButton" type="Button" parent="."]
+[node name="PauseButton" type="Button" parent="CanvasLayer"]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 70.0
 offset_bottom = 70.0
 
-[node name="GameOverPanel" type="Panel" parent="."]
-offset_left = 365.0
-offset_top = 170.0
-offset_right = 915.0
-offset_bottom = 530.0
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
+offset_left = -628.0
+offset_top = 537.0
+offset_right = -78.0
+offset_bottom = 897.0
 
-[node name="GameOverLabel" type="Label" parent="GameOverPanel"]
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/GameOverPanel"]
 layout_mode = 0
 offset_left = 158.0
 offset_top = 26.0
@@ -55,7 +99,7 @@ text = "游戏结束！"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameOverPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GameOverPanel"]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 201.0
@@ -63,25 +107,25 @@ offset_right = 488.0
 offset_bottom = 296.0
 theme_override_constants/separation = 100
 
-[node name="QuitButton" type="Button" parent="GameOverPanel/HBoxContainer"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/GameOverPanel/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "退出游戏"
 
-[node name="StartButton" type="Button" parent="GameOverPanel/HBoxContainer"]
+[node name="StartButton" type="Button" parent="CanvasLayer/GameOverPanel/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "重新开始"
 
-[node name="GamePausePanel" type="Panel" parent="."]
-offset_left = 365.0
-offset_top = 170.0
-offset_right = 915.0
-offset_bottom = 530.0
+[node name="GamePausePanel" type="Panel" parent="CanvasLayer"]
+offset_left = -623.0
+offset_top = 62.0
+offset_right = -73.0
+offset_bottom = 422.0
 
-[node name="GamePauseLabel" type="Label" parent="GamePausePanel"]
+[node name="GamePauseLabel" type="Label" parent="CanvasLayer/GamePausePanel"]
 layout_mode = 0
 offset_left = 158.0
 offset_top = 26.0
@@ -93,7 +137,7 @@ text = "暂停游戏"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ReturnButton" type="Button" parent="GamePausePanel"]
+[node name="ReturnButton" type="Button" parent="CanvasLayer/GamePausePanel"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 13.0
@@ -103,7 +147,7 @@ theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "返回"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GamePausePanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GamePausePanel"]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 201.0
@@ -111,17 +155,90 @@ offset_right = 488.0
 offset_bottom = 296.0
 theme_override_constants/separation = 100
 
-[node name="PauseQuitButton" type="Button" parent="GamePausePanel/HBoxContainer"]
+[node name="PauseQuitButton" type="Button" parent="CanvasLayer/GamePausePanel/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "退出游戏"
 
-[node name="PauseRestartButton" type="Button" parent="GamePausePanel/HBoxContainer"]
+[node name="PauseRestartButton" type="Button" parent="CanvasLayer/GamePausePanel/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 text = "重新开始"
 
+[node name="ground" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ground"]
+texture_repeat = 2
+texture = ExtResource("2_yfhen")
+region_enabled = true
+region_rect = Rect2(980.7499, 609.913, 5196.9375, 3383.6572)
+
+[node name="Moss1" type="Sprite2D" parent="ground"]
+modulate = Color(0.8952026, 0.8967655, 0.97560817, 1)
+position = Vector2(373, 870)
+texture = ExtResource("3_ogotu")
+
+[node name="Moss2" type="Sprite2D" parent="ground"]
+modulate = Color(0.8952026, 0.8967655, 0.97560817, 1)
+position = Vector2(1481, 626)
+texture = ExtResource("4_2vdra")
+
+[node name="Moss3" type="Sprite2D" parent="ground"]
+modulate = Color(0.8952026, 0.8967655, 0.97560817, 1)
+position = Vector2(852, 911)
+texture = ExtResource("5_dwi20")
+
+[node name="Moss4" type="Sprite2D" parent="ground"]
+modulate = Color(0.8952026, 0.8967655, 0.97560817, 1)
+position = Vector2(1579, 269)
+texture = ExtResource("6_2mqu7")
+
+[node name="Moss5" type="Sprite2D" parent="ground"]
+modulate = Color(0.8952026, 0.8967655, 0.97560817, 1)
+position = Vector2(1895, 470)
+texture = ExtResource("7_f0e2v")
+
+[node name="Moss6" type="Sprite2D" parent="ground"]
+modulate = Color(0.8952026, 0.8967655, 0.97560817, 1)
+position = Vector2(1312, 1012)
+texture = ExtResource("6_2mqu7")
+
+[node name="Moss7" type="Sprite2D" parent="ground"]
+modulate = Color(0.8952026, 0.8967655, 0.97560817, 1)
+position = Vector2(1785, 846)
+texture = ExtResource("7_f0e2v")
+
+[node name="Moss8" type="Sprite2D" parent="ground"]
+position = Vector2(1073, 536)
+texture = ExtResource("4_2vdra")
+
+[node name="Moss9" type="Sprite2D" parent="ground"]
+position = Vector2(575, 417)
+texture = ExtResource("5_dwi20")
+
+[node name="Moss10" type="Sprite2D" parent="ground"]
+position = Vector2(293, 230)
+texture = ExtResource("7_f0e2v")
+
+[node name="TileMap" type="TileMap" parent="ground"]
+tile_set = SubResource("TileSet_ogotu")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 131072, 2, 1, 196608, 2, 2, 196608, 2, 3, 196608, 2, 4, 196608, 2, 5, 196608, 2, 6, 196608, 2, 65536, 131072, 3, 131072, 131072, 3, 196608, 131072, 3, 7, 196608, 2, 8, 196608, 2, 9, 196608, 2, 10, 196608, 2, 131083, 262144, 3, 196619, 262144, 3, 262155, 262144, 3, 327691, 262144, 3, 393227, 262144, 4, 393226, 196608, 4, 393225, 196608, 4, 393223, 196608, 4, 393224, 196608, 4, 393222, 196608, 4, 393221, 196608, 4, 393220, 196608, 4, 393219, 196608, 4, 393218, 196608, 4, 327680, 131072, 3, 393216, 131072, 4, 393215, 65536, 3, 458751, 65536, 4, 393217, 196608, 4, 262144, 131072, 3, 65547, 262144, 3, 11, 262144, 2)
+
+[node name="playArea" type="Area2D" parent="."]
+position = Vector2(128, 94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playArea"]
+position = Vector2(950, 535)
+shape = SubResource("RectangleShape2D_vj0bg")
+
+[node name="SnakeCtrl" parent="." instance=ExtResource("1_6bbl1")]
+offset_left = 640.0
+offset_top = 300.0
+offset_right = 640.0
+offset_bottom = 300.0
+
 [node name="Food" parent="." instance=ExtResource("3_vj0bg")]
-position = Vector2(247, 298)
+position = Vector2(1995, 1100)
