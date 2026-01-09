@@ -46,7 +46,6 @@ func _mouse_entered() -> void:
 
 func _on_frame_changed():
 	if snakesAnimated.animation == "snakes":
-		print(snakesAnimated.frame)
 		if snakesAnimated.frame == 2:
 			snakeJumpAudio.play()
 		if snakesAnimated.frame == 7:
@@ -58,7 +57,7 @@ func _on_frame_changed():
 
 func _ready() -> void:
 	if !GlobalState.is_load:
-		start_screen_title.position = Vector2(480, -70)
+		start_screen_title.position = Vector2(420, -100)
 		start_screen_btns.position = Vector2(-400, 425)
 		snakesAnimated.position = Vector2(200, 485)
 		snakesAnimated.play("snakes")
