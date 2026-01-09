@@ -6,12 +6,12 @@ extends Node2D
 @onready var snakeFood = $Food
 @onready var scoreLabel = $CanvasLayer/ScorePanel/ScoreLabel
 
-@export var quitButton = Button
-@export var restartButton = Button
-@export var pauseButton = Button
-@export var pauseQuitButton = Button
-@export var pauseRestartButton = Button
-@export var returnButton = Button
+@export var quitButton : Button
+@export var restartButton : Button
+@export var pauseButton : Button
+@export var pauseQuitButton : Button
+@export var pauseRestartButton : Button
+@export var returnButton : Button
 @export var foodRadomX_min : float
 @export var foodRadomX_max : float
 @export var foodRadomY_min : float
@@ -69,6 +69,7 @@ func _on_collision_occurred(body: Node2D) -> void:
 	elif body.name == "SnakeBody" || body.name.contains("@Area2D@"):
 		snakeCtrl.signal_move.emit(false)
 		snakeCtrl.signal_game_over.emit()
+		pauseButton.disabled = true  # 游戏结束暂停按钮不能再点击，否则会触发bug
 		gameOverPanel.visible = true
 		print("Game Over!!!")
 		
@@ -81,6 +82,7 @@ func _on_collision_ended(body: Node2D) -> void:
 	if body.name == "playArea":
 		snakeCtrl.signal_move.emit(false)
 		snakeCtrl.signal_game_over.emit()
+		pauseButton.disabled = true  # 游戏结束暂停按钮不能再点击，否则会触发bug
 		gameOverPanel.visible = true
 		print("Game Over!!!")
 		
