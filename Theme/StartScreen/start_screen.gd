@@ -7,9 +7,12 @@ extends Control
 @export var start_screen_btns_speed: float = 200.0
 
 @onready var snakesAnimated = $SnakesAnimated
-@export var snakesAnimated_speed:float = 200.0
+@export var snakesAnimated_speed:float = 190.0
 
 @onready var selectAudio = $SelectAudio
+@onready var snakeJumpAudio = $SnakesAnimated/SnakeJumpAudio
+@onready var snakeStepAudio = $SnakesAnimated/SnakeStepAudio
+@onready var themeMusic = $ThemeMusic
 
 @export var start_button: Button
 @export var settings_button: Button
@@ -41,6 +44,18 @@ func _mouse_entered() -> void:
 	selectAudio.play()
 
 
+func _on_frame_changed():
+	if snakesAnimated.animation == "snakes":
+		print(snakesAnimated.frame)
+		if snakesAnimated.frame == 2:
+			snakeJumpAudio.play()
+		if snakesAnimated.frame == 7:
+			snakeStepAudio.play()
+	elif  snakesAnimated.animation == "snakes2":
+		themeMusic.play()
+		snakesAnimated.frame_changed.disconnect(_on_frame_changed) # 断开获取帧信号
+
+
 func _ready() -> void:
 	if !GlobalState.is_load:
 		start_screen_title.position = Vector2(480, -70)
@@ -63,6 +78,9 @@ func _ready() -> void:
 	if quit_button:
 		quit_button.pressed.connect(_on_quit_button_pressed)
 		quit_button.mouse_entered.connect(_mouse_entered)
+		
+	# 动画放到某一帧触发信号
+	snakesAnimated.frame_changed.connect(_on_frame_changed)
 
 
 func _process(delta: float) -> void:

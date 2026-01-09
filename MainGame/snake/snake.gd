@@ -38,6 +38,7 @@ func body_orientation(event: InputEvent) -> void:
 # 新增蛇身
 func _add_body() -> void:
 	if body_parts.is_empty():
+		snakeBody.is_Head = true
 		body_parts.push_back(snakeBody)
 	else:
 		eatAudio.play() # 新增蛇身播放音效

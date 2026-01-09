@@ -6,6 +6,18 @@ signal collision_started(body: Node2D)
 signal collision_ended(body: Node2D)
 
 @onready var animatedSnake = $AnimatedSnake
+@onready var snakeJumpAudio = $AnimatedSnake/SnakeJumpAudio
+@onready var snakeStepAudio = $AnimatedSnake/SnakeStepAudio
+
+var is_Head : bool = false # 是否是蛇头
+
+
+func _on_frame_changed():
+	if is_Head == true:
+		if animatedSnake.frame == 2:
+			snakeJumpAudio.play()
+		if animatedSnake.frame == 7:
+			snakeStepAudio.play()
 
 
 func _ready() -> void:
@@ -16,6 +28,9 @@ func _ready() -> void:
 	area_exited.connect(_on_area_exited)
 
 	animatedSnake.play("AnimatedSnake")
+	
+	# 动画放到某一帧触发信号
+	animatedSnake.frame_changed.connect(_on_frame_changed)
 
 
 func _on_body_entered(body: Node2D) -> void:

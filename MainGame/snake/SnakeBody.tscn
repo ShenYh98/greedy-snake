@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://b8lsj2wmevxbh"]
+[gd_scene load_steps=26 format=3 uid="uid://b8lsj2wmevxbh"]
 
 [ext_resource type="Script" uid="uid://bdv64so7xptmd" path="res://MainGame/snake/snake_body.gd" id="1_t8rck"]
 [ext_resource type="Texture2D" uid="uid://dvdbd4a67jy4r" path="res://MainGame/snake/snake.png" id="2_t8rck"]
+[ext_resource type="AudioStream" uid="uid://c1jbioupv6yil" path="res://audio/MainGame/slime_jump.wav" id="3_56jq4"]
+[ext_resource type="AudioStream" uid="uid://dquk13c3seixm" path="res://audio/MainGame/slime_step_1.ogg" id="4_juko5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t8rck"]
 atlas = ExtResource("2_t8rck")
@@ -161,7 +163,12 @@ scale = Vector2(3.6250002, 3.8908129)
 sprite_frames = SubResource("SpriteFrames_t8rck")
 animation = &"AnimatedSnake"
 frame_progress = 0.22374782
-speed_scale = 2.0
+
+[node name="SnakeJumpAudio" type="AudioStreamPlayer2D" parent="AnimatedSnake"]
+stream = ExtResource("3_56jq4")
+
+[node name="SnakeStepAudio" type="AudioStreamPlayer2D" parent="AnimatedSnake"]
+stream = ExtResource("4_juko5")
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
 scale = Vector2(0.8, 0.8)
