@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+    <title>暂停图标</title>
+    <desc>一个绿色的暂停图标，由两个垂直矩形组成</desc>
+    <rect x="12" y="10" width="8" height="30" rx="1.5" fill="#4CAF50"/>
+    <rect x="30" y="10" width="8" height="30" rx="1.5" fill="#4CAF50"/>
+</svg>
