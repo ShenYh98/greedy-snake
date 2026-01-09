@@ -4,6 +4,7 @@ extends Node2D
 @onready var gameOverPanel = $CanvasLayer/GameOverPanel
 @onready var gamePausePanel = $CanvasLayer/GamePausePanel
 @onready var snakeFood = $Food
+@onready var scoreLabel = $CanvasLayer/ScorePanel/ScoreLabel
 
 @export var quitButton = Button
 @export var restartButton = Button
@@ -15,7 +16,7 @@ extends Node2D
 @export var foodRadomX_max : float
 @export var foodRadomY_min : float
 @export var foodRadomY_max : float
-
+@export var score : int
 
 func _on_return_button_pressed() -> void:
 	print("返回游戏")
@@ -48,6 +49,9 @@ func _on_start_button_pressed() -> void:
 	var random_x = rng.randf_range(foodRadomX_min, foodRadomX_max)
 	var random_y = rng.randf_range(foodRadomY_min, foodRadomY_max)
 	snakeFood.position = Vector2(random_x, random_y)
+	
+	score = 0 # 分清0
+	scoreLabel.text = "%d" % score
 
 
 func _on_collision_occurred(body: Node2D) -> void:
@@ -59,11 +63,17 @@ func _on_collision_occurred(body: Node2D) -> void:
 		snakeFood.position = Vector2(random_x, random_y)
 		
 		snakeCtrl.signal_add_body.emit() # 创建一个蛇身
+		
+		score += 1 # 得1分
+		scoreLabel.text = "%d" % score
 	elif body.name == "SnakeBody" || body.name.contains("@Area2D@"):
 		snakeCtrl.signal_move.emit(false)
 		snakeCtrl.signal_game_over.emit()
 		gameOverPanel.visible = true
 		print("Game Over!!!")
+		
+		score = 0 # 分清0
+		scoreLabel.text = "%d" % score
 
 
 func _on_collision_ended(body: Node2D) -> void:
@@ -73,6 +83,9 @@ func _on_collision_ended(body: Node2D) -> void:
 		snakeCtrl.signal_game_over.emit()
 		gameOverPanel.visible = true
 		print("Game Over!!!")
+		
+		score = 0 # 分清0
+		scoreLabel.text = "%d" % score
 
 
 func _ready() -> void:
@@ -88,6 +101,9 @@ func _ready() -> void:
 	foodRadomX_max = 1995.0
 	foodRadomY_min = 160.0
 	foodRadomY_max = 1100.0
+
+	score = 0
+	scoreLabel.text = "%d" % score
 
 	# 食物位置随机生成
 	var rng = RandomNumberGenerator.new()

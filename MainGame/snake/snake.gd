@@ -48,6 +48,8 @@ func _add_body() -> void:
 		newBody.position = body_parts[-1].position + new_direction * body_distance
 		get_parent().add_child(newBody)
 		body_parts.push_back(newBody)
+		
+		speed += 10 # 每次新增身体长度，速度会增加
 
 
 # 清空蛇身
