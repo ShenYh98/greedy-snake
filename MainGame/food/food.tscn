@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://desn2pvr4mpxn"]
+[gd_scene load_steps=15 format=3 uid="uid://desn2pvr4mpxn"]
 
 [ext_resource type="Texture2D" uid="uid://bhcco5wde7sf0" path="res://MainGame/food/slime spritesheet calciumtrice.png" id="2_o8sj8"]
 
@@ -83,6 +83,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1rdph"]
 radius = 16.492422
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1rdph"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector3(50, -45, 0)
+scale_min = 0.0
+scale_max = 11.259999
+color = Color(1, 1, 1, 0.47058824)
+
 [node name="Food" type="StaticBody2D"]
 
 [node name="AnimatedFood" type="AnimatedSprite2D" parent="."]
@@ -95,3 +104,6 @@ frame_progress = 0.379616
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1rdph")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_1rdph")
