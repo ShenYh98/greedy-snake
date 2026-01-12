@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk3hrtrk1rbdl"]
+[gd_scene load_steps=15 format=3 uid="uid://dk3hrtrk1rbdl"]
 
 [ext_resource type="PackedScene" uid="uid://cqt4y8o4nvv83" path="res://MainGame/SnakeCtrl.tscn" id="1_6bbl1"]
 [ext_resource type="Script" uid="uid://cow0144yi34g0" path="res://MainGame/main_game.gd" id="1_ry3at"]
@@ -33,19 +33,26 @@ texture_region_size = Vector2i(180, 180)
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-76.95601, 90, -78.892006, -81.796, 90, -78.892, 90, 43.076004, 45.980003, 45.01201, 45.012, 90)
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-90, 43.076004, -90, -73.084, 90, -73.084, 90, 43.076004)
 4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-47.916008, 42.108, -90, 43.076004, -90, -80.828, 78.892006, -81.796, 78.892006, 90, -45.98001, 90)
 5:2/0 = 0
 0:3/0 = 0
 1:3/0 = 0
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-74.052, -90, 43.07602, -90, 45.012, 90, -73.084015, 90)
 3:3/0 = 0
 4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-46.948006, -90, 75.01999, -90, 77.924, 90, -45.98001, 90)
 5:3/0 = 0
 0:4/0 = 0
 1:4/0 = 0
 2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-75.020004, -90, 44.044006, -90, 42.107994, -46.947998, 90, -46.947998, 90, 77.92401, -75.98801, 75.020004)
 3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-90, 72.11601, -90, -45.979996, 90, -44.044003, 90, 74.05202)
 5:4/0 = 0
 0:5/0 = 0
 1:5/0 = 0
@@ -58,13 +65,12 @@ texture_region_size = Vector2i(180, 180)
 0:7/0 = 0
 1:7/0 = 0
 4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-90, 78.89201, -90, -45.011993, -45.980003, -45.011993, -46.948006, -90, 77.92401, -90, 77.924, 79.860016)
 
 [sub_resource type="TileSet" id="TileSet_ogotu"]
 tile_size = Vector2i(180, 180)
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dwi20")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vj0bg"]
-size = Vector2(1893, 995)
 
 [node name="MainGame" type="Node2D" node_paths=PackedStringArray("quitButton", "restartButton", "pauseButton", "pauseQuitButton", "pauseRestartButton", "returnButton")]
 script = ExtResource("1_ry3at")
@@ -271,17 +277,10 @@ texture = ExtResource("5_dwi20")
 position = Vector2(293, 230)
 texture = ExtResource("7_f0e2v")
 
-[node name="TileMap" type="TileMap" parent="ground"]
+[node name="AreaTileMap" type="TileMap" parent="ground"]
 tile_set = SubResource("TileSet_ogotu")
 format = 2
 layer_0/tile_data = PackedInt32Array(0, 131072, 2, 1, 196608, 2, 2, 196608, 2, 3, 196608, 2, 4, 196608, 2, 5, 196608, 2, 6, 196608, 2, 65536, 131072, 3, 131072, 131072, 3, 196608, 131072, 3, 7, 196608, 2, 8, 196608, 2, 9, 196608, 2, 10, 196608, 2, 131083, 262144, 3, 196619, 262144, 3, 262155, 262144, 3, 327691, 262144, 3, 393227, 262144, 4, 393226, 196608, 4, 393225, 196608, 4, 393223, 196608, 4, 393224, 196608, 4, 393222, 196608, 4, 393221, 196608, 4, 393220, 196608, 4, 393219, 196608, 4, 393218, 196608, 4, 327680, 131072, 3, 393216, 131072, 4, 393215, 65536, 3, 458751, 65536, 4, 393217, 196608, 4, 262144, 131072, 3, 65547, 262144, 3, 11, 262144, 2)
-
-[node name="playArea" type="Area2D" parent="."]
-position = Vector2(128, 94)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="playArea"]
-position = Vector2(950, 535)
-shape = SubResource("RectangleShape2D_vj0bg")
 
 [node name="SnakeCtrl" parent="." instance=ExtResource("1_6bbl1")]
 offset_left = 640.0

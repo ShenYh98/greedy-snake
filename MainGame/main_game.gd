@@ -66,26 +66,12 @@ func _on_collision_occurred(body: Node2D) -> void:
 		
 		score += 1 # 得1分
 		scoreLabel.text = "%d" % score
-	elif body.name == "SnakeBody" || body.name.contains("@Area2D@"):
+	elif body.name == "SnakeBody" || body.name.contains("@Area2D@") || body.name == "AreaTileMap":
 		snakeCtrl.signal_move.emit(false)
 		snakeCtrl.signal_game_over.emit()
 		pauseButton.disabled = true  # 游戏结束暂停按钮不能再点击，否则会触发bug
 		gameOverPanel.visible = true
 		print("Game Over!!!")
-		
-		score = 0 # 分清0
-		scoreLabel.text = "%d" % score
-
-
-func _on_collision_ended(body: Node2D) -> void:
-	print("蛇身离开区域，对象: ", body.name)
-	if body.name == "playArea":
-		snakeCtrl.signal_move.emit(false)
-		snakeCtrl.signal_game_over.emit()
-		pauseButton.disabled = true  # 游戏结束暂停按钮不能再点击，否则会触发bug
-		gameOverPanel.visible = true
-		print("Game Over!!!")
-		
 		score = 0 # 分清0
 		scoreLabel.text = "%d" % score
 
@@ -118,8 +104,6 @@ func _ready() -> void:
 
 	# 蛇头蛇身碰撞信号
 	snakeCtrl.snake.snakeBody.collision_occurred.connect(_on_collision_occurred)
-	# 游戏区域碰撞信号
-	snakeCtrl.snake.snakeBody.collision_ended.connect(_on_collision_ended)
 
 	if quitButton:
 		# 先断开可能存在的旧连接，避免重复
